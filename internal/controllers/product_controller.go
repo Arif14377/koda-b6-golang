@@ -34,7 +34,9 @@ func MenuProductController() {
 }
 
 func ShowProductController() {
+	var url string = "https://raw.githubusercontent.com/Arif14377/koda-b6-weekly1/refs/heads/main/data.json"
 
+	views.Product(url)
 }
 
 func SearchProductController() {
