@@ -6,6 +6,12 @@ type Cart struct {
 }
 
 type CartItem struct {
-	Product Product
-	Qty     int
+	Id    int
+	Name  string
+	Price int
+	Qty   int
+}
+
+func (c *CartItem) SumPriceItem() int {
+	return c.Price * c.Qty
 }
