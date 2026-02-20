@@ -42,6 +42,7 @@ func MenuProductController(url string) {
 
 func ShowProductController(url string, cart models.Cart) {
 	views.Product(url)
+	cart.Cart = []models.CartItem{}
 	for true {
 		fmt.Println("# What do you want:")
 		fmt.Println("1. Masukkan ke keranjang")
@@ -62,6 +63,23 @@ func ShowProductController(url string, cart models.Cart) {
 			fmt.Printf("Total Belanja: Rp. %d\n", totalPrice)
 
 			continue
+		case 2:
+			input := views.InputString("Anda yakin ingin melanjutkan checkout? (Y/n) ")
+			var history []models.CartItem
+			switch input {
+			case "Y":
+				fmt.Println("Berhasil checkout.")
+				history = cart.Cart
+				cart.Cart = []models.CartItem{}
+				fmt.Printf("Keranjang: \n%v\n", cart.Cart)
+			case "n":
+				continue
+			}
+			fmt.Println("1. Lihat History Order")
+			viewHistory := views.InputAngka("Masukkan menu: ")
+			if viewHistory == 1 {
+				fmt.Printf("History:\n %v\n", history)
+			}
 		}
 	}
 }
